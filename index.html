@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nan Deng · Personal Site</title>
+    <!-- Inter font (clean English font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        /* 两栏布局容器 */
+        .main {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 4rem;
+        }
+
+        /* 左侧栏 — 固定宽度，包含头像和个人信息 */
+        .sidebar {
+            flex: 0 0 280px;
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            padding-right: 1rem;
+        }
+
+        .avatar {
+            margin-bottom: 1.8rem;
+        }
+
+        .avatar img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar h1 {
+            font-size: 2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+            color: #111;
+        }
+
+        .sidebar .role {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar .bio-text {
+            color: #374151;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* 联系链接 */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .contact-links a {
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            transition: color 0.15s;
+        }
+
+        .contact-links a i {
+            width: 24px;
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .contact-links a:hover {
+            color: #000;
+        }
+
+        .contact-links a:hover i {
+            color: #111;
+        }
+
+        /* 右侧内容栏 */
+        .content {
+            flex: 1;
+            max-width: 700px;
+        }
+
+        /* 自我介绍区域 */
+        .intro-section {
+            background: #f2f4f8;
+            padding: 1.8rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text {
+            color: #1f2937;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .intro-text a {
+            color: #111827;
+            text-decoration: underline;
+            text-decoration-color: #9ca3af;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .intro-text a:hover {
+            text-decoration-color: #111;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 560;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.8rem;
+            color: #111;
+            display: flex;
+            align-items: center;
+        }
+
+        section h2 i {
+            margin-right: 12px;
+            color: #6b7280;
+            font-size: 1.3rem;
+            width: 28px;
+        }
+
+        /* 出版项目列表 */
+        .pub-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .pub-none {
+            color: #6b7280;
+            font-style: italic;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .pub-title {
+            font-size: 1.15rem;
+            font-weight: 520;
+            margin-bottom: 0.2rem;
+        }
+
+        .pub-title a {
+            color: #111827;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.1s;
+        }
+
+        .pub-title a:hover {
+            border-bottom-color: #111;
+        }
+
+        .pub-authors {
+            color: #4b5563;
+            font-size: 0.9rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .pub-venue {
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .pub-tag {
+            background: #f0f2f5;
+            color: #2d2d3a;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        /* 经历条目 */
+        .exp-item {
+            margin-bottom: 2rem;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-header h3 {
+            font-size: 1.2rem;
+            font-weight: 540;
+        }
+
+        .exp-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .exp-sub {
+            color: #4b5563;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .exp-desc {
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        /* 有链接的地方 */
+        .inline-link {
+            color: #111827;
+            text-decoration: underline;
+            text-decoration-color: #d1d5db;
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.15s;
+        }
+
+        .inline-link:hover {
+            text-decoration-color: #111;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e5e7eb;
+            margin: 2rem 0;
+        }
+
+        footer {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+            padding-top: 1rem;
+        }
+
+        /* 响应式：小屏幕时左侧不再固定 */
+        @media (max-width: 800px) {
+            .main {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- 左侧个人信息区 -->
+        <aside class="sidebar">
+            <div class="avatar">
+                <!-- 照片命名为 photo.jpg 放在 images 文件夹 -->
+                <img src="images/photo.jpg">
+            </div>
+            <h1>Nan Deng (邓楠)</h1>
+            <div class="role">University of Macau</div>
+            <div class="bio-text">
+                Faculty of Science and Technology <br>Computer Vision Laboratory
+            </div>
+            
+            <!-- 联系方式 -->
+            <div class="contact-links">
+                <a href="mailto:cbhsfmf0206@gmail.com">
+                    <i class="far fa-envelope"></i> cbhsfmf0206@gmail.com
+                </a>
+                <a href="https://github.com/Soyamilkk" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> github.com/Soyamilkk
+                </a>
+            </div>
+        </aside>
+
+        <!-- 右侧主要内容区 -->
+        <main class="content">
+            <!-- 自我介绍区域 -->
+            <div class="intro-section">
+                <div class="intro-text">
+                    I am a master student from the <strong>Computer Vision Laboratory</strong>, FST, University of Macau. 
+                    Supervised by <a href="https://aimerykong.github.io/" class="inline-link" target="_blank">Pro. Shu Kong</a>, I graduated from 
+                    <a href="https://www.cug.edu.cn/" class="inline-link" target="_blank">China University of Geosciences (Wuhan)</a> with a bachelor degree.
+                </div>
+            </div>
+
+            <!-- 出版项目 -->
+            <section>
+                <h2><i class="fas fa-book-open"></i> Publications</h2>
+                
+                <div class="pub-none">
+                    None
+                </div>
+            </section>
+
+            <!-- 个人经历 -->
+            <section>
+                <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>M.Sc. in Artificial Intelligence</h3>
+                        <span class="exp-date">2025 – present</span>
+                    </div>
+                    <div class="exp-sub">Faculty of Science and Technology · University of Macau</div>
+                    <div class="exp-desc">
+                        Computer Vision Laboratory, supervised by Professor Shu Kong.
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>B.E. in Computer Science and Technology</h3>
+                        <span class="exp-date">2019 – 2023</span>
+                    </div>
+                    <div class="exp-sub">School of Computer Science · China University of Geosciences (Wuhan)</div>
+                    <div class="exp-desc">
+                        Graduated with bachelor degree.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 简单的 footer -->
+            <footer>
+                © 2026 Nan Deng
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
