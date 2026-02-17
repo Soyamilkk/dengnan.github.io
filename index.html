@@ -22,6 +22,86 @@
             background-color: #f9fafb;
             color: #111827;
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* 暗黑模式样式 */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .sidebar h1,
+        body.dark-mode section h2,
+        body.dark-mode .exp-header h3 {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .role,
+        body.dark-mode .bio-text,
+        body.dark-mode .exp-sub,
+        body.dark-mode .exp-date,
+        body.dark-mode .pub-venue {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .intro-section {
+            background: #2d2d2d;
+        }
+
+        body.dark-mode .intro-text {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .contact-links a,
+        body.dark-mode footer {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .contact-links a:hover {
+            color: #fff;
+        }
+
+        body.dark-mode .exp-desc {
+            color: #d1d5db;
+        }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 40px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #2d2d2d;
+            border-color: #404040;
+            color: #e5e7eb;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.1rem;
+            color: #fbbf24; /* 太阳颜色 */
+        }
+
+        body.dark-mode .theme-toggle i {
+            color: #a78bfa; /* 月亮颜色 */
         }
 
         /* 两栏布局容器 */
@@ -118,6 +198,7 @@
             padding: 1.8rem;
             border-radius: 20px;
             margin-bottom: 3rem;
+            transition: background-color 0.3s ease;
         }
 
         .intro-text {
@@ -156,6 +237,39 @@
             color: #6b7280;
             font-size: 1.3rem;
             width: 28px;
+        }
+
+        /* News 区域样式 */
+        .news-item {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-date {
+            min-width: 120px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .news-content {
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .news-item {
+            border-bottom-color: #404040;
+        }
+
+        body.dark-mode .news-date {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .news-content {
+            color: #d1d5db;
         }
 
         /* 出版项目列表 */
@@ -244,7 +358,7 @@
             font-size: 0.95rem;
         }
 
-        /* ===== 链接样式 ===== */
+        /* 链接样式 */
         .exp-sub a {
             color: #3b82f6;        /* 浅蓝色 */
             text-decoration: none;  /* 去掉下划线 */
@@ -284,6 +398,12 @@
     </style>
 </head>
 <body>
+    <!-- 黑白模式切换按钮 -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+        <span>Light / Dark</span>
+    </div>
+
     <div class="main">
         <!-- 左侧个人信息区 -->
         <aside class="sidebar">
@@ -306,6 +426,7 @@
                 <a href="https://github.com/elowendeng" target="_blank" rel="noopener">
                     <i class="fab fa-github"></i> github.com/elowendeng
                 </a>
+                <a href="https://www.linkedin.com/in/elowen-nandeng/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
         </aside>
 
@@ -318,6 +439,17 @@
                     Supervised by <a href="https://aimerykong.github.io/" class="inline-link" target="_blank">Pro. Shu Kong</a>.
                 </div>
             </div>
+
+            <!-- News 区域-->
+            <section>
+                <h2><i class="fas fa-newspaper"></i> News</h2>
+                
+                <div class="news-item">
+                    <span class="news-date">Feb 15th, 2026</span>
+                    <span class="news-content">Having my personal website! 👻</span>
+                </div>
+                
+            </section>
 
             <!-- 出版项目 -->
             <section>
@@ -361,5 +493,35 @@
             </footer>
         </main>
     </div>
+
+    <!-- 黑白模式切换 JavaScript -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // 切换图标
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
