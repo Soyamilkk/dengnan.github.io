@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- 网站图标 -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         * {
             margin: 0;
@@ -129,15 +127,14 @@
         }
 
         .intro-text a {
-            color: #111827;
-            text-decoration: underline;
-            text-decoration-color: #9ca3af;
-            text-underline-offset: 3px;
+            color: #3b82f6;        /* 浅蓝色 */
+            text-decoration: none;  /* 去掉下划线 */
             font-weight: 500;
+            transition: color 0.15s;
         }
 
         .intro-text a:hover {
-            text-decoration-color: #111;
+            color: #1e4f9e;        /* 悬停时变为深一点的蓝色 */
         }
 
         section {
@@ -247,17 +244,15 @@
             font-size: 0.95rem;
         }
 
-        /* 有链接的地方 */
-        .inline-link {
-            color: #111827;
-            text-decoration: underline;
-            text-decoration-color: #d1d5db;
-            text-underline-offset: 3px;
-            transition: text-decoration-color 0.15s;
+        /* ===== 链接样式 ===== */
+        .exp-sub a {
+            color: #3b82f6;        /* 浅蓝色 */
+            text-decoration: none;  /* 去掉下划线 */
+            transition: color 0.15s;
         }
 
-        .inline-link:hover {
-            text-decoration-color: #111;
+        .exp-sub a:hover {
+            color: #1e4f9e;        /* 悬停时变深 */
         }
 
         hr {
@@ -307,8 +302,8 @@
                 <a href="mailto:cbhsfmf0206@gmail.com">
                     <i class="far fa-envelope"></i> cbhsfmf0206@gmail.com
                 </a>
-                <a href="https://github.com/Soyamilkk" target="_blank" rel="noopener">
-                    <i class="fab fa-github"></i> github.com/Soyamilkk
+                <a href="https://github.com/elowendeng" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> github.com/elowendeng
                 </a>
             </div>
         </aside>
@@ -319,8 +314,7 @@
             <div class="intro-section">
                 <div class="intro-text">
                     I am a master student from the <strong>Computer Vision Laboratory</strong>, FST, University of Macau. 
-                    Supervised by <a href="https://aimerykong.github.io/" class="inline-link" target="_blank">Pro. Shu Kong</a>, I graduated from 
-                    <a href="https://www.cug.edu.cn/" class="inline-link" target="_blank">China University of Geosciences (Wuhan)</a> with a bachelor degree.
+                    Supervised by <a href="https://aimerykong.github.io/" class="inline-link" target="_blank">Pro. Shu Kong</a>.
                 </div>
             </div>
 
@@ -342,7 +336,7 @@
                         <h3>M.Sc. in Artificial Intelligence</h3>
                         <span class="exp-date">2025 – present</span>
                     </div>
-                    <div class="exp-sub">Faculty of Science and Technology · University of Macau</div>
+                    <div class="exp-sub"><a href="https://www.fst.um.edu.mo/" class="inline-link" target="_blank">Faculty of Science and Technology</a> · <a href="https://www.um.edu.mo/zh-hant/" class="inline-link" target="_blank">University of Macau</a></div>
                     <div class="exp-desc">
                         Computer Vision Laboratory, supervised by Professor Shu Kong.
                     </div>
@@ -353,7 +347,7 @@
                         <h3>B.E. in Computer Science and Technology</h3>
                         <span class="exp-date">2019 – 2023</span>
                     </div>
-                    <div class="exp-sub">School of Computer Science · China University of Geosciences (Wuhan)</div>
+                    <div class="exp-sub"><a href="https://cs.cug.edu.cn/" class="inline-link" target="_blank">School of Computer Science</a> · <a href="https://www.cug.edu.cn/" class="inline-link" target="_blank">China University of Geosciences (Wuhan)</a></div>
                     <div class="exp-desc">
                         Graduated with bachelor degree.
                     </div>
@@ -362,7 +356,7 @@
 
             <!-- 简单的 footer -->
             <footer>
-                © 2026 Nan Deng
+                © 2026 Elowen · Nan Deng
             </footer>
         </main>
     </div>
